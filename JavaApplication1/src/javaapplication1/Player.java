@@ -52,7 +52,7 @@ public class Player {
 	
 	public void receiveWinnings(int winnings) {
 		if (winnings < 0) throw new IllegalArgumentException("Winnings cannot be negative.");
-		winnings += 15;
+		winnings += 5;
                 
                 balance = balance + winnings;		
 	}
