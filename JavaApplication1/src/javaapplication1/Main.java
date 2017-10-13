@@ -8,9 +8,14 @@ package javaapplication1;
 import java.util.List;
 import java.io.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+
 public class Main {
-	
-	public static void main(String[] args) throws Exception {
+	//DEBUGGING
+	public static void main(String[] args) throws IOException  {
 		
 	   BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
@@ -39,20 +44,21 @@ public class Main {
                 player.setLimit(limit);
                 int bet = 5;
 
+
                 System.out.println(String.format("Start Game %d: ", i));
                 System.out.println(String.format("%s starts with balance %d, limit %d", 
                 		player.getName(), player.getBalance(), player.getLimit()));
 
                 int turn = 0;
-                //DEBUGGING
-                while (player.balanceExceedsLimitBy(bet) && player.getBalance() < 200  && balance > limit)
+                while (player.balanceExceedsLimitBy(bet) && player.getBalance() < 200)
                 {
+                    game = new Game(new Dice(), new Dice(), new Dice());
                     turn++;                    
                 	DiceValue pick = DiceValue.getRandom();
                    
                 	System.out.printf("Turn %d: %s bet %d on %s\n",
-                			turn, player.getName(), bet, pick); 
-                	 //DEBUGGING
+                			turn, player.getName(), bet, pick);
+
                 	int winnings = game.playRound(player, pick, bet);
                     cdv = game.getDiceValues();
                     
@@ -62,7 +68,7 @@ public class Main {
                     if (winnings > 0) {
 	                    System.out.printf("%s won %d, balance now %d\n\n",
 	                    		player.getName(), winnings, player.getBalance());
-	                	winCount++; 
+	                	winCount++;
                     }
                     else {
 	                    System.out.printf("%s lost, balance now %d\n\n",
@@ -76,8 +82,9 @@ public class Main {
                 System.out.println(String.format("%s now has balance %d\n", player.getName(), player.getBalance()));
                 
             } //for
-            
+
             System.out.println(String.format("Win count = %d, Lose Count = %d, %.2f", winCount, loseCount, (float) winCount/(winCount+loseCount)));
+            System.out.println();
             totalWins += winCount;
             totalLosses += loseCount;
 

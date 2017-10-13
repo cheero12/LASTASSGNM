@@ -12,7 +12,6 @@ package javaapplication1;
 public class Player {
 	private String name;
 	private int balance;
-        
 	private int limit;
 	
 	public Player(String name, int balance) {
@@ -30,39 +29,28 @@ public class Player {
 	public void setLimit(int limit) {
 		if (limit < 0) throw new IllegalArgumentException("Limit cannot be negative.");
 		if (limit > balance)  throw new IllegalArgumentException("Limit cannot be greater than balance.");
-		
-                this.limit = limit;
+		this.limit = limit;
 	}
 
 	public boolean balanceExceedsLimit() {
-	               	
-            return (balance > limit);
+		return (balance > limit);
 	}
 	
 	public boolean balanceExceedsLimitBy(int amount) {
-		//DEBUGGING
+		
+            //DEBUGGING ADDED = SIGN
             return (balance - amount >= limit);
 	}
 	
 	public void takeBet(int bet) {
 		if (bet < 0) throw new IllegalArgumentException("Bet cannot be negative.");
 		if (!balanceExceedsLimitBy(bet)) throw new IllegalArgumentException("Placing bet would go below limit.");
-		
-                
-                
-                balance = balance - bet;
-                
-                
-                
+		balance = balance - bet;
 	}
-	
+	// DEBUGGING ADDED BET 
 	public void receiveWinnings(int winnings, int bet) {
-		
-            
-            if (winnings < 0) throw new IllegalArgumentException("Winnings cannot be negative.");
-		//winnings += 5;
-                //DEBUGGING
-                balance = balance + winnings +bet;		
+		if (winnings < 0) throw new IllegalArgumentException("Winnings cannot be negative.");
+		balance = balance + winnings +bet;
 	}
 	
 	public String toString() {

@@ -39,20 +39,20 @@ public class Game {
 		player.takeBet(bet);
 		    
 		int matches = 0;
+		int winnings = 0;
 		for ( Dice d : dice) {
 			d.roll();
 			if (d.getValue().equals(pick)) { 
-			
-                            matches += 1;
-                            
+				matches += 1;
+				//winnings += bet;
 			}
 		}
-		
-		int winnings = matches * bet;
+		//DEBUGGING
+		winnings += matches * bet;
 
-		if (matches > 0) {
-                    //DEBUGGING
-			player.receiveWinnings(winnings,bet);
+		if (matches > 0) {			
+		//DEBUGGING	
+                    player.receiveWinnings(winnings,bet);
 		}
         return winnings;		
 	}
