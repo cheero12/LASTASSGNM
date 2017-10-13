@@ -39,6 +39,7 @@ public class Game {
 		player.takeBet(bet);
 		    
 		int matches = 0;
+		//DEBUGGING INITIALIZING 
 		int winnings = 0;
 		for ( Dice d : dice) {
 			d.roll();
@@ -47,7 +48,7 @@ public class Game {
 				//winnings += bet;
 			}
 		}
-		//DEBUGGING
+		//DEBUGGING ADDED +SIGN
 		winnings += matches * bet;
 
 		if (matches > 0) {			
